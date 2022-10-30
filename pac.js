@@ -1,6 +1,21 @@
+
+function URLPath(href) {
+    var match = href.match(/^(https?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/);
+    return match && {
+
+        pathname: match[5],
+
+    }
+}
+
+
 function FindProxyForURL(url, host) { 
+
     if (host == "www.roblox.com") {
-        return "PROXY 4.5.6.7:8080; PROXY 7.8.9.10:8080"; 
+       var UrlPath = URLPath(url)
+
+
+       if (UrlPath.pathname == "/my/avatar") {return "PROXY 127.0.0.7:1337" }
     };
    return "DIRECT";
 }
